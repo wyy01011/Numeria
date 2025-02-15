@@ -41,27 +41,36 @@ data = loader.load()
 
 template = ("""
 "You are a math teacher. You are teaching students in grade {grade} in {location}, specifically following the curriculum provided.
-Please read through the curriculum and generate one math question for each category outlined in the curriculum. 
-The questions should be clear, simple, and appropriate for the students, and they should directly correspond to the categories in the curriculum.
-Do not include any category titles before the questions.
-The answers to the math questions must be numerical. If the answer is not numerical, generate a different question until you have a numerical answer, or exculde the category.
-Provide the questions in a numbered list, with no other content in your response.
-Provide the corresponding answers in a numbered list, with no other content in your response.
-Begin by generating only the questions and answers, one per curriculum category."
+
+Here are the rules you MUSR follow:
+1. Please read through the curriculum and generate one math question for each category outlined in the curriculum. The questions should be clear, simple, and appropriate for the students, and they should directly correspond to the categories in the curriculum.
+2. Do not include any category titles before the questions.
+3. The answers to the math questions must be numerical. If the answer is not a NUMBER, generate a different question until you have a numerical answer, or exculde the category.
+4. Print 'QUESTIONS:' before listing each question seperated by a newline. DO NOT number the questions.
+5. Print 'ANSWERS:' before the corresponding numerical answers seperated by a newline. DO NOT number the answers.
+6. Begin by generating only the questions and answers, one per curriculum category.
 Curriculum: {curriculum}
 """)
 
-stuGrade = 1
+stuGrade = 8
 stuLocation = "Ontario, Canada"
 # stuCurriculum = "pasted"
 template = template.format(grade = stuGrade, location = stuLocation, curriculum = data)
 # print(template)
-answer = deepseek_chain.invoke(template)
+response = deepseek_chain.invoke(template)
 
 # clean the answer - just get the questions
-clean_answer = str(answer).split("</think>\n\n")[1]
+clean_response = str(response).split("</think>\n\n")[1]
 
-print(clean_answer)
+print(clean_response)
+
+# split the questions and answers
+response_split = clean_response.split("\n\n")
+# print(response_split)
+questions, answers = (response_split[0].split(" \n"))[1:], (response_split[1].split(" \n"))[1:]
+print(questions)
+# print("------------------")
+print(answers)
 
 #list of q = list[print(clean_answer)]
 # list of ans = []
