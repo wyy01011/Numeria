@@ -1,0 +1,143 @@
+/* General Page Styles */
+body {
+    background-color: #fdf8eb;
+    margin: 0;
+    padding: 0;
+    font-family: "Raleway", sans-serif;
+    align-items: left;
+}
+
+/* Main Container */
+.question-container {
+    display: flex;
+    flex-direction: column;
+    
+    justify-content: center;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* Two-Tone Background */
+.question-upper {
+    background-color: #fdf8eb;
+    width: 60%;
+    padding: 40px 20px;
+    text-align: left;
+    margin-left: 70px;
+    margin-top: 20px;
+
+}
+
+.question-lower {
+    background-color: #E1C5CC;
+    width: 100%;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    
+    position: relative;
+    height: 200px;
+}
+
+/* Sound Button */
+.sound-button {
+    position: absolute;
+    top: 12px;  /* Adjusted for proper top alignment */
+    right: 65px; /* Adjusted for proper right alignment */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    width: 40px;  /* Adjust button size */
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Sound Icon */
+.sound-icon {
+    width: 28px; /* Reduce the size of the image */
+    height: auto;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.sound-button:hover .sound-icon {
+    opacity: 0.7;
+}
+
+
+/* Question Text */
+.question-title, .question-text {
+    color: #729DAC;
+
+font-family: Raleway;
+font-size: 30px;
+font-style: normal;
+font-weight: 900;
+line-height: normal;
+}
+
+/* Input Field */
+.answer-input {
+    width: 80%;
+    height: 80%;
+    max-width: 500px;
+    padding: 14px;
+    background-color: #FEF9ED;
+    font-size: 1.2rem;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    outline: none;
+    transition: border 0.2s ease-in-out;
+    margin-left: 60px;
+    font-style: italic;
+
+}
+
+.answer-input:focus {
+    border-color: #3b82f6;
+}
+
+/* Submit Button */
+.submit-button {
+    margin-top: 30px;
+    background-color: #729DAC;
+    color: white;
+    font-size: 1.2rem;
+    padding: 15px 30px;
+    border-radius: 10px;
+    cursor: pointer;
+    border: none;
+    transition: background 0.2s ease-in-out;
+    margin-left: 60px;
+}
+
+.submit-button:hover {
+    background-color: #436a79;
+}
+
+@keyframes bobbing {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-20px); } /* Moves up */
+    100% { transform: translateY(0); } /* Returns to original position */
+}
+
+/* Character Image */
+.eagle-character {
+    position: absolute;
+    bottom: 100px;
+    right: 10%;
+    width: 300px;
+    height: auto;
+    animation: bobbing 2s infinite ease-in-out; 
+}
+
+.settingButton {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    height: 40px;
+    width: auto; 
+}
+

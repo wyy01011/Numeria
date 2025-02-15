@@ -85,7 +85,7 @@ button:hover {
 /* Home Image Container */
 .homeAnimalsContainer {
   position: absolute;
-  right: 100px;
+  right: 0px;
   bottom: 20px;
   display: flex;
   justify-content: flex-end;
@@ -93,7 +93,7 @@ button:hover {
 }
 
 .homeAnimalsContainer img {
-  width: 480px;
+  width: 800px;
   height: auto;
   max-width: 100%;
 }
