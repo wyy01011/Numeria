@@ -1,0 +1,107 @@
+/* Home.css */
+body{
+  background-color: #FEF9ED;
+}
+
+.container {
+    margin-left: 70px;
+    text-align: left;
+    margin-top: 170px;
+    
+  }
+
+  .title{
+    color: #729DAC;
+    font-family: "Raleway", sans-serif;
+    font-size: 70px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+    width: 100%;
+    display: block;
+
+    width: 638px;
+    height: 182px;
+    flex-shrink: 0;
+
+    margin: 80px 0 0 0;
+}
+
+.numeria {
+  display: block;  /* Forces "NUMERIA!" to a new line */
+  font-size: 8vw; /* Make it larger */
+}
+
+.subtitle{
+    color: #729DAC;
+
+    font-family: "Raleway", sans-serif;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 85px; /* 312.5% */
+    flex-shrink: 0;
+
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 10px;
+  }
+  
+.buttons{
+  border-radius: 20px;
+  margin-left: 70px;
+  
+  display: flex;  /* Makes buttons appear in a row */
+    align-items: center; /* Aligns them vertically */
+    text-decoration: none;
+
+    width: 300px;
+}
+
+.buttons a {
+  text-decoration: none; /* Removes underline from links */
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px;
+    background: #E1C5CC;
+    color: #FEF9ED;
+
+    width: 155px;
+    height: 41px;
+    flex-shrink: 0;
+
+    text-align: center;
+    font-family: "Raleway", sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    letter-spacing: 0.35px;
+    
+    display: flex; /* Enables flexbox */
+    justify-content: center; /* Centers text horizontally */
+    align-items: center; /* Centers text vertically */
+    text-decoration: none;
+
+  }
+  
+button:hover {
+  opacity: 0.8;
+}
+
+.homeAnimalsContainer{
+  display: flex;
+  justify-content: right;
+
+  height: 200px;
+  width: 200px;
+
+  margin-left: 720px;
+  margin-top: -300px;
+
+}
+  
