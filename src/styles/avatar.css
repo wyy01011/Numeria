@@ -1,0 +1,17 @@
+body {
+    background-color: #FEF9ED;
+    margin: 0;
+    padding: 0;
+    font-family: "Raleway", sans-serif;
+  }
+  
+.titleAvatar{
+    
+    color: #729DAC;
+    font-size: 33px;
+    font-weight: 900;
+    line-height: normal;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+}

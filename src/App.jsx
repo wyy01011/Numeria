@@ -5,6 +5,7 @@ import Dashboard from "./pages/dashboard";
 import "./styles/home.css";
 import LevelSelection from './pages/level';
 import Reward from './pages/reward';
+import Avatar from './pages/avatar';
 
 
 
@@ -17,6 +18,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/level" element={<LevelSelection />} />
         <Route path="/reward" element={<Reward />} />
+        <Route path="/avatar" element={<Avatar />} />
       </Routes>
     </Router>
   );
