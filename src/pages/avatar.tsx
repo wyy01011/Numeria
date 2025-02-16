@@ -18,7 +18,7 @@ const Avatar = () => {
         </div>
         
         <div className="mooseContainer">
-            <Link to="/question"><img src="images/moose.png" alt="moose" className="avatarImage" /></Link>
+            <Link to="/level"><img src="images/moose.png" alt="moose" className="avatarImage" /></Link>
           
             <button className="avatarButton"><Link to="/question"> canadian <br /></Link> moose</button>
           

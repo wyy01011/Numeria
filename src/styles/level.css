@@ -1,0 +1,107 @@
+/* Ensure full page layout and scrolling */
+body {
+    background-color: #ffeec7;
+    margin: 0;
+    padding: 0;
+    font-family: "Raleway", sans-serif;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/* Wrapper to allow scrolling */
+.content-container {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-bottom: 120px; /* Prevents content from being covered by the bottom-container */
+}
+
+/* Fixed Bottom Container */
+.bottom-container {
+    width: 100%;
+    background-color: #ecc3ce;
+    padding: 20px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    font-size: 15px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Ensure text is properly aligned */
+.bottomText {
+    margin-left: 40px;
+    color: #FEF9ED;
+    font-size: 30px;
+    font-weight: 900;
+    line-height: normal;
+}
+
+/* Continue button styling */
+.bottom-container button {
+    background-color: #FCF2DC;
+    color: #729DAC;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 40px;
+    text-decoration: none;
+}
+
+/* Hover effect */
+.bottom-container button:hover {
+    opacity: 80%;
+}
+
+@keyframes bobbing {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-20px); } /* Moves up */
+    100% { transform: translateY(0); } /* Returns to original position */
+}
+
+/* Ensure images inside .island1 scale properly */
+.island1 {
+    display: flex;
+    width: 40px;
+    margin-left: 50px;
+    margin-top: 20px;
+    animation: bobbing 2s infinite ease-in-out; 
+    transition: transform 0.1s ease-in-out;
+}
+
+.island1:hover{
+    transform: scale(1.1); /* Enlarges image */
+    filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.3));
+    content: url("images/island1_highlighted.png");
+    width: 400px;  /* Adjust to desired width */
+    height: auto;
+
+}
+
+.island1:hover ~ .islands img {
+    content: url("images/routeGrey.png"); /* Replace with your new image */
+    margin-top: -15px;
+}
+
+.island1 img {
+    width: 350px;
+    height: auto;
+}
+
+.islands{
+    margin-top: -195px;
+    margin-left: 110px;
+}
+
+.islands img {
+    width: 1100px;
+    height: auto;
+}
+

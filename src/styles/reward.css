@@ -1,9 +1,4 @@
-html, body {
-    overflow: hidden; /* Disables scrolling */
-    height: 100vh; /* Ensures full viewport height */
-    margin: 0;
-    padding: 0;
-  }
+
   
 .youGotContainer {
     margin-top: 80px; /* Adjust to make the spacing smaller */
@@ -37,6 +32,10 @@ html, body {
     justify-content: center;
     align-items: center;
     overflow: hidden; /* Prevents accidental scrolling */
+    overflow: hidden; /* Disables scrolling */
+    height: 100vh; /* Ensures full viewport height */
+    margin: 0;
+    padding: 0;
   }
   
   .reward-container::before {

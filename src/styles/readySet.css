@@ -1,0 +1,76 @@
+body {
+    background-color: #ffeec7;
+    margin: 0;
+    padding: 0;
+    font-family: "Raleway", sans-serif;
+    align-items: left;
+}
+
+.settingButton {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    height: 40px;
+    width: auto; 
+}
+
+/* Sound Button */
+.sound-button {
+    position: absolute;
+    top: 12px;  /* Adjusted for proper top alignment */
+    right: 65px; /* Adjusted for proper right alignment */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    width: 40px;  /* Adjust button size */
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Sound Icon */
+.sound-icon {
+    width: 28px; /* Reduce the size of the image */
+    height: auto;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.bottom-container {
+    width: 100%;
+    background-color: #ecc3ce;
+    padding: 20px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    align-items: left;
+}
+
+.bottomTextRS{
+    margin-left: 40px;
+    display: flex;
+    width: 800px;
+    height: 133px;
+    flex-direction: column;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #FEF9ED;
+    font-size: 70px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+}
+
+
+.bottom-container button img {
+    width: 40px;  /* Adjust button size */
+    height: 40px; /* Adjust button size */
+}
+
+.bottom-container button:hover {
+    opacity: 80%;
+}

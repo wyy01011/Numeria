@@ -4,7 +4,7 @@ import "./../styles/reward.css";
 
 const Reward = () => {
   return (
-    <div className="reward-container">
+    <div className="rewardContainer">
       <motion.div 
         className="youGotContainer"
         initial={{ scale: 0, opacity: 0 }}

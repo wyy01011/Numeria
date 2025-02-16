@@ -1,40 +1,68 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect, useRef } from "react";
+import "../styles/level.css"; // Import CSS
+import { Link } from "react-router-dom";
 
-export default function LevelSelection() {
-    const [selectedLevel, setSelectedLevel] = useState<number | null>(null);
+const Level: React.FC = () => {
+  const [isMuted, setIsMuted] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
-    if (selectedLevel !== null) {
-        return <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-            <h1 className="text-center text-4xl text-white">Loading Level {selectedLevel}...</h1>
-        </motion.div>;
+  // Toggle Sound Function
+  const toggleSound = () => {
+    if (!isMuted) {
+      audioRef.current?.pause(); // Mute sound
+    } else {
+      audioRef.current?.play(); // Unmute and play sound
     }
+    setIsMuted(!isMuted);
+  };
 
-    return (
-        <div className="flex flex-col items-center justify-center h-screen bg-gray-900 text-white">
-            <h1 className="text-4xl mb-6">Select Your Level</h1>
-            <div className="grid grid-cols-3 gap-4">
-                <motion.button
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    onClick={() => setSelectedLevel(1)}
-                    className="px-6 py-3 bg-blue-500 rounded-lg shadow-lg"
-                >
-                    Level 1: Face Mojo Jojo
-                </motion.button>
-                <motion.button
-                    whileHover={{ scale: 1.1 }}
-                    className="px-6 py-3 bg-gray-600 rounded-lg shadow-lg cursor-not-allowed"
-                >
-                    Level 2: Coming Soon
-                </motion.button>
-                <motion.button
-                    whileHover={{ scale: 1.1 }}
-                    className="px-6 py-3 bg-gray-600 rounded-lg shadow-lg cursor-not-allowed"
-                >
-                    Level 3: Coming Soon
-                </motion.button>
-            </div>
+  // Effect to Load Audio
+  useEffect(() => {
+    audioRef.current = new Audio("/paper-planes-chill-future-beat-283956.mp3"); // Ensure correct path
+    audioRef.current.loop = true; // Loop the audio for background effect
+  }, []);
+
+  return (
+    <div className="page-container">
+      {/* Scrollable Content */}
+      <div className="content-container">
+        <Link to="/">
+          <img src="images/setting.png" alt="setting" className="settingButton" />
+        </Link>
+
+        {/* Sound Button with Image */}
+        <button className="sound-button" onClick={toggleSound}>
+          <img
+            src={isMuted ? "/images/sound-off.png" : "/images/sound-on.png"}
+            alt={isMuted ? "Muted" : "Unmuted"}
+            className="sound-icon"
+          />
+        </button>
+
+        {/* Audio Element (Hidden) */}
+        <audio ref={audioRef} src="/paper-planes-chill-future-beat-283956.mp3" />
+
+        {/* Island Image */}
+        <div className="island1">
+          <img src="images/island1.png" alt="island1" />
         </div>
-    );
-}
+
+        {/* Island Image */}
+        <div className="islands">
+          <img src="images/route.png" alt="islands" />
+        </div>
+      </div>
+
+      {/* Fixed Bottom Container */}
+      <div className="bottom-container">
+        <span className="bottomText">
+          Numeria is a magical place, full of hidden treasures. <br /> Ready to start the search?
+        </span>
+        
+        
+      </div>
+    </div>
+  );
+};
+
+export default Level;
