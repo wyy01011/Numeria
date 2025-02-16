@@ -1,6 +1,16 @@
 # Numeria
 
-This project is an AI-powered math tutor that generates grade-specific math questions based on a given curriculum. It uses the **DeepSeek API** and **LangChain** to generate questions and answers dynamically.
+This project is an AI-powered math tutor that generates grade-specific math questions based on a given Grade, Country and Curriculum. It uses the **DeepSeek API** and **LangChain** to generate questions and answers dynamically.
+
+We have 3 stages of our project:
+  1) Setting up environment and make a ChatBot:
+     - we have used DeepSeek API and other libraries like langchain , langchain-groq we have created a ChatBot.We are targeting
+       children from grade 1 to 5 and across all countries and they can provide their curriculum and ChatBot will ask three questions.
+
+  2) Deploy ChatBot using Streamlit:
+     - We are using Streamlit for deployment.
+       
+  3) User Interface:
 
 ## 🚀 Features
 - Generates math questions based on a curriculum for grades 1-5.
