@@ -1,0 +1,90 @@
+body {
+    background-color: #ffeec7;
+    margin: 0;
+    padding: 0;
+    font-family: "Raleway", sans-serif;
+}
+
+.titleAvatar {
+    color: #729DAC;
+    font-size: 40px; /* Increased font size */
+    font-weight: 900;
+    text-align: center;
+    margin-top: 80px;
+}
+
+/* Flexbox to align avatars in a row */
+.pageContainer {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align avatars at the top */
+    gap: 50px; /* Increased space between avatars */
+    margin-top: 30px;
+}
+
+/* Ensure image and button are stacked vertically */
+.giraffeContainer, .mooseContainer, .racoonContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.5s ease, filter 0.5s ease; /* Smooth transition */
+}
+
+/* Style buttons with larger size */
+.avatarButton {
+    width: 200px; /* Increased button width */
+    height: 60px; /* Increased button height */
+    background-color: #e5c4c4;
+    color: #FEF9ED !important;
+    border: none;
+    font-size: 16px; /* Increased font size */
+    font-weight: bold;
+    text-transform: capitalize;
+    cursor: pointer;
+    border-radius: 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.avatarButton a, 
+.avatarButton a:visited, 
+.avatarButton a:hover, 
+.avatarButton a:active {
+    text-decoration: none;
+    color: inherit; /* Ensures it takes the button's color */
+}
+
+.avatarButton:hover {
+    background-color: #d4b3b3;
+}
+
+/* Hover effect for enlarging and adding a shadow */
+.giraffeContainer:hover, 
+.mooseContainer:hover, 
+.racoonContainer:hover {
+    transform: scale(1.1); /* Enlarges image */
+    filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.3)); /* Adds shadow */
+}
+
+/* Smooth animation effect */
+.avatarImage {
+    width: 200px; /* Keep size consistent */
+    height: 220px;
+    object-fit: contain;
+    margin-bottom: 15px;
+    
+}
+
+.settingButton {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    height: 40px;
+    width: auto;
+  }
+

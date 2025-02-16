@@ -1,0 +1,67 @@
+
+  
+.youGotContainer {
+    margin-top: 80px; /* Adjust to make the spacing smaller */
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .youGot {
+    font-size: 4rem;
+    margin: 0; /* Removes default margin */
+  }
+  
+.poutine{
+    text-align: center;
+    font-size: 40px;
+    margin-top: 0px;
+}
+
+.poutinePic{
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.reward-container {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Prevents accidental scrolling */
+    overflow: hidden; /* Disables scrolling */
+    height: 100vh; /* Ensures full viewport height */
+    margin: 0;
+    padding: 0;
+  }
+  
+  .reward-container::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: radial-gradient(circle, rgba(255, 223, 50, 0.3) 20%, rgba(255, 223, 50, 0.6) 80%),
+                repeating-conic-gradient(rgba(255, 255, 200, 0.6) 0deg, rgba(255, 255, 200, 0.6) 15deg,
+                                          rgba(255, 223, 50, 0.4) 15deg, rgba(255, 223, 50, 0.4) 30deg);
+    transform: translate(-50%, -50%);
+    animation: rotateBackground 8s linear infinite;
+    z-index: -1; /* Keeps it behind content */
+  }
+  
+  @keyframes rotateBackground {
+    from {
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to {
+      transform: translate(-50%, -50%) rotate(360deg);
+    }
+  }
+  
+  
+      
+  
