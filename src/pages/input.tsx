@@ -1,15 +1,24 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./../styles/input.css";
 
 const Input: React.FC = () => {
   const [grade, setGrade] = useState("");
   const [country, setCountry] = useState("");
   const [curriculum, setCurriculum] = useState("");
+  const [errorMessage, setErrorMessage] = useState(""); // For error messages
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Validate input fields
+    if (!grade || !country || !curriculum.trim()) {
+      setErrorMessage("⚠️ Please fill in all fields before proceeding.");
+      return;
+    }
+
+    setErrorMessage(""); // Clear previous errors if any
 
     const requestData = { grade, country, curriculum };
 
@@ -26,7 +35,7 @@ const Input: React.FC = () => {
       if (data.questions && data.answers) {
         localStorage.setItem("questions", JSON.stringify(data.questions));
         localStorage.setItem("answers", JSON.stringify(data.answers));
-        navigate("/question"); // Navigate to question screen
+        navigate("/question"); // Navigate to the question screen
       } else {
         console.error("Invalid data format", data);
       }
@@ -71,7 +80,10 @@ const Input: React.FC = () => {
             <textarea value={curriculum} onChange={(e) => setCurriculum(e.target.value)} placeholder="Paste curriculum here" required />
           </div>
 
-          <Link to = "/avatar"><button type="submit" className="submit-btn">SUBMIT</button></Link>
+          {/* Display error message if any */}
+          {errorMessage && <p className="error-message">{errorMessage}</p>}
+
+          <button type="submit" className="submit-btn">SUBMIT</button>
         </form>
       </div>
     </div>
