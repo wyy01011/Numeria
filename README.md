@@ -21,7 +21,7 @@ This project uses the **DeepSeek API**. We must set up our API key in an `.env` 
 📦 Numeria
  - ├── 📜 README.md   # Project Documentation
  - ├── 📂 src         # Source Code
- - ├── 📜 .env        # API Key (not to be shared)
+ - ├── 📜 .env        # API Key 
  - ├── 📜 requirements.txt # Python Dependencies
 
 ## ▶️ Running the Application
