@@ -3,3 +3,6 @@ langchain-groq
 python-dotenv
 langchain-community
 streamlit
+Flask
+flask-cors
+langchain-core
