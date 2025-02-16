@@ -4,33 +4,38 @@ import "./../styles/home.css";
 
 const Home = () => {
   return (
-    <>
-      {/* Login Button */}
+    <div className="homeContainer">
+      {/* Welcome Back Text */}
       <div className="welcomeBack">
-        <p>Welcome Back, Ellehack!</p>
+        <p>Welcome back, Mathilda!</p>
       </div>
 
-      <div className="container">
-        <p className="title">
-          WELCOME TO <br />
-          <span className="numeria">NUMERIA</span>
-        </p>
-        <p className="subtitle">Find your treasure!</p>
-      </div>
+      {/* Main Content */}
+      <div className="contentWrapper">
+        <div className="containerHomeText">
+          <p className="title">
+            WELCOME TO <br />
+            <span className="numeria">NUMERIA</span>
+          </p>
+          <p className="subtitle">Find your treasure!</p>
 
-      <div className="buttons">
-        <Link to="/avatar">
-          <button>continue</button>
-        </Link>
-        <Link to="/dashboard">
-          <button>stats</button>
-        </Link>
-      </div>
+          {/* Buttons */}
+          <div className="buttons">
+            <Link to="/avatar">
+              <button>play</button>
+            </Link>
+            <Link to="/dashboard">
+              <button>my stats</button>
+            </Link>
+          </div>
+        </div>
 
-      <span className="homeAnimalsContainer">
-        <img src="/images/homeAnimals.png" alt="Homepage art" />
-      </span>
-    </>
+        {/* Animal Image */}
+        <div className="homeAnimalsContainer">
+          <img src="/images/homeAnimals.png" alt="Homepage art" />
+        </div>
+      </div>
+    </div>
   );
 };
 

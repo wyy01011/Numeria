@@ -44,7 +44,7 @@ const Level: React.FC = () => {
 
         {/* Island Image */}
         <div className="island1">
-          <Link to = "/transition3"><button><img src="images/island1.png" alt="island1" /></button></Link>
+          <Link to = "/transition1"><button className="island1Button"><img src="images/island1.png" alt="island1" /></button></Link>
         </div>
 
         {/* Island Image */}

@@ -7,14 +7,27 @@ body {
     align-items: left;
 }
 
+@keyframes fadeIn {
+    from {
+        opacity: 0; /* Start fully transparent */
+    }
+    to {
+        opacity: 1; /* Fully visible */
+    }
+}
+
 /* Main Container */
 .question-container {
+    width: 100vw;
+    height: 100vh; /* Full viewport height */
+    overflow: hidden; /* Disable scrolling */
     display: flex;
     flex-direction: column;
-    
     justify-content: center;
-    min-height: 100vh;
     position: relative;
+
+    animation: fadeIn 1s ease-in-out forwards;
+    
 }
 
 /* Two-Tone Background */

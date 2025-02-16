@@ -1,104 +1,113 @@
-/* Home.css */
-body {
+@keyframes fadeIn {
+  from {
+      opacity: 0; /* Start fully transparent */
+  }
+  to {
+      opacity: 1; /* Fully visible */
+  }
+}
+
+/* Home Page Container */
+.homeContainer {
   background-color: #ffeec7;
   margin: 0;
   padding: 0;
   font-family: "Raleway", sans-serif;
-}
-
-/* Container for text */
-.container {
-  margin-left: 70px;
-  text-align: left;
-  margin-top: 180px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Ensure full screen */
+  position: relative;
+
+  animation: fadeIn 1s ease-in-out forwards;
 }
 
-/* Title Styles */
+/* Wrapper for main content */
+.contentWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* Text Container */
+.containerHomeText {
+  text-align: left;
+  margin-left: 20px;
+  max-width: 500px;
+  margin-top: 100px;
+}
+
+/* Title Styling */
 .title {
   color: #729DAC;
-  font-size: 73px;
+  font-size: 55px;
   font-weight: 900;
-  line-height: normal;
-  display: block;
+  line-height: 1.1;
   margin: 0;
-  letter-spacing: 1px;
 }
 
-/* Forces "NUMERIA" to a new line */
+/* Ensures "NUMERIA" is bold and responsive */
 .numeria {
   display: block;
-  font-size: 8vw;
+  font-size: 6vw;
 }
 
-/* Subtitle Styling */
+/* Subtitle */
 .subtitle {
   color: #729DAC;
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 500;
   margin-top: 15px;
-  margin-bottom: 0;
-  margin-left: 10px;
+  margin-bottom: 20px;
 }
 
-/* Buttons Container */
+/* Buttons Wrapper */
 .buttons {
   display: flex;
   align-items: center;
-  margin-left: 63px;
-  margin-top: 15px;
+  gap: 15px;
+  margin-top: 10px;
 }
 
-/* Remove underline from links */
-.buttons a {
-  text-decoration: none;
-}
-
-/* Button Styling */
+/* Button Styles */
 button {
-  padding: 10px 20px;
+  padding: 12px 24px;
   border: none;
-  border-radius: 5px;
+  border-radius: 20px;
   cursor: pointer;
-  margin: 10px;
-  background: #E1C5CC;
-  color: #FEF9ED;
-  width: 155px;
-  height: 41px;
-  flex-shrink: 0;
-  text-align: center;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
-  letter-spacing: 0.35px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-decoration: none;
+  text-transform: lowercase;
+  text-align: center;
+  width: 140px;
+  transition: background 0.2s ease-in-out;
+  background: #E1C5CC;
+  color: #ffffff;
 }
 
 button:hover {
-  opacity: 0.8;
+  opacity: 0.9;
 }
 
-/* Home Image Container */
+/* Animals Image */
 .homeAnimalsContainer {
-  position: absolute;
-  right: 0px;
-  bottom: 20px;
+  position: relative;
   display: flex;
   justify-content: flex-end;
   align-items: center;
 }
 
 .homeAnimalsContainer img {
-  width: 800px;
+  width: 600px;
   height: auto;
   max-width: 100%;
 }
 
-/* "Welcome Back" Login Text */
+/* Welcome Back Text */
 .welcomeBack {
   position: absolute;
   top: 20px;
