@@ -69,39 +69,45 @@ body {
 /* Ensure images inside .island1 scale properly */
 .island1 {
     display: flex;
-    width: 40px;
-    margin-left: 50px;
-    margin-top: 20px;
-    animation: bobbing 2s infinite ease-in-out; 
-    transition: transform 0.1s ease-in-out;
-}
-
-.island1:hover{
-    transform: scale(1.1); /* Enlarges image */
-    filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.3));
-    content: url("images/island1_highlighted.png");
-    width: 400px;  /* Adjust to desired width */
+    width: 350px; /* Ensure the base size is set */
     height: auto;
-
+    margin-left: 140px;
+    margin-top: 150px; 
+    animation: bobbing 2s infinite ease-in-out; 
+    transition: transform 0.3s ease-in-out;
 }
 
-.island1:hover ~ .islands img {
-    content: url("images/routeGrey.png"); /* Replace with your new image */
-    margin-top: -15px;
+
+.island1:hover {
+    transform: scale(1.1); /* Enlarges smoothly */
+    filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.3));
 }
 
+/* Change only the image, not position */
 .island1 img {
     width: 350px;
     height: auto;
+    transition: opacity 0.3s ease-in-out;
 }
 
-.islands{
-    margin-top: -195px;
+.island1:hover img {
+    content: url("images/island1_highlighted.png"); /* Change image */
+    width: 400px;
+}
+
+/* Ensure islands image does not shift */
+.islands {
+    margin-top: -105px;
     margin-left: 110px;
 }
 
 .islands img {
     width: 1100px;
     height: auto;
+    transition: opacity 0.3s ease-in-out;
 }
 
+/* Change the islands image when .island1 is hovered */
+.island1:hover ~ .islands img {
+    content: url("images/routeGrey.png"); /* Change only the image */
+}

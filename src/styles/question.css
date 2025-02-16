@@ -30,7 +30,7 @@ body {
 
 .question-lower {
     background-color: #E1C5CC;
-    width: 100%;
+    width: 100vw;
     padding: 30px 20px;
     display: flex;
     flex-direction: column;

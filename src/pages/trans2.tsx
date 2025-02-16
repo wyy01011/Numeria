@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
-import "../styles/readySet.css"; // Import CSS
+import "../styles/trans2.css"; // Import CSS
 import { Link } from "react-router-dom";
 
-const ReadySet: React.FC = () => {
+const Trans3: React.FC = () => {
   const [isMuted, setIsMuted] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
@@ -24,7 +24,8 @@ const ReadySet: React.FC = () => {
   }, []);
 
   return (
-    <div className="question-container">
+    
+    <div className="question-containerT2">
         <Link to ="/"><img src = "images/setting.png" alt="setting" className="settingButton"></img></Link>
 
       {/* Sound Button with Image */}
@@ -39,15 +40,25 @@ const ReadySet: React.FC = () => {
       {/* Audio Element (Hidden) */}
       <audio ref={audioRef} src="/paper-planes-chill-future-beat-283956.mp3" />
 
-      <div className ="bottom-container">
-        <span className="bottomTextRS"> READY, SET... </span>
-        <br/>
-        <Link to="/readySet"><button><img src = "images/sound-on.png" alt = "start"></img></button></Link>
-    </div>
+      <div className="eagle-containerT2">
+        <img className="eagleT2" src="images/eagle.png" alt="eagle" />
+        </div>
+
+      <div className="bottom-containerT2">
+    <span className="bottomTextDesT2">Oh no! First, we must get past the bald eagle...</span>
+
+    {/* Arrow button positioned correctly */}
+    <Link to="/question">
+        <button className="no-frame-button2">
+            <img className="arrow" src="images/arrow.png" alt="continue" />
+        </button>
+    </Link>
+</div>
 
       
     </div>
+ 
   );
 };
 
-export default ReadySet;
+export default Trans3;
