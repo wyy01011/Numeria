@@ -47,8 +47,8 @@ body {
     border: none;
     cursor: pointer;
     padding: 0;
-    width: 50px;  /* Adjust button size */
-    height: 50px;
+    width: 30px;  /* Adjust button size */
+    height: 30px;
     display: flex;
     align-items: center;
     justify-content: center;

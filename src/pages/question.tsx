@@ -1,59 +1,102 @@
 import React, { useState, useEffect, useRef } from "react";
-import "../styles/question.css"; // Import CSS
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import "../styles/question.css";
 
 const Question: React.FC = () => {
-  const [isMuted, setIsMuted] = useState(false);
+  const [questions, setQuestions] = useState<string[]>([]);
+  const [answers, setAnswers] = useState<string[]>([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [userAnswer, setUserAnswer] = useState("");
+  const [correctCount, setCorrectCount] = useState(0);
+  const navigate = useNavigate();
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const [isMuted, setIsMuted] = useState(false);
 
-  // Toggle Sound Function
+  useEffect(() => {
+    const storedQuestions = localStorage.getItem("questions");
+    const storedAnswers = localStorage.getItem("answers");
+
+    if (storedQuestions && storedAnswers) {
+      setQuestions(JSON.parse(storedQuestions));
+      setAnswers(JSON.parse(storedAnswers));
+    }
+
+    audioRef.current = new Audio("/paper-planes-chill-future-beat-283956.mp3");
+    audioRef.current.loop = true;
+    if (!isMuted) audioRef.current.play();
+  }, []);
+
   const toggleSound = () => {
     if (!isMuted) {
-      audioRef.current?.pause(); // Mute sound
+      audioRef.current?.pause();
     } else {
-      audioRef.current?.play(); // Unmute and play sound
+      audioRef.current?.play();
     }
     setIsMuted(!isMuted);
   };
 
-  // Effect to Load Audio
-  useEffect(() => {
-    audioRef.current = new Audio("/paper-planes-chill-future-beat-283956.mp3"); // Ensure correct path
-    audioRef.current.loop = true; // Loop the audio for background effect
-  }, []);
+  const fetchAnswer = async (question: string, userAnswer: string) => {
+    try {
+      const response = await fetch("http://127.0.0.1:5000/check-answer", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ question, userAnswer })
+      });
+      const data = await response.json();
+      return data.correct;
+    } catch (error) {
+      console.error("Error fetching answer validation:", error);
+      return false;
+    }
+  };
+
+  const handleSubmit = async () => {
+    const isCorrect = await fetchAnswer(questions[currentIndex], userAnswer);
+    if (isCorrect) {
+      alert("Correct!");
+      setCorrectCount(correctCount + 1);
+
+      if (correctCount + 1 === 4) {
+        alert("Level up!");
+        setCorrectCount(0);
+      }
+
+      if (currentIndex < questions.length - 1) {
+        setCurrentIndex(currentIndex + 1);
+        setUserAnswer("");
+      } else {
+        navigate("/reward");
+      }
+    } else {
+      alert("Wrong! Try again.");
+    }
+  };
 
   return (
     <div className="question-container1">
-        <Link to ="/"><img src = "images/setting.png" alt="setting" className="settingButton"></img></Link>
-
-      {/* Sound Button with Image */}
       <button className="sound-button" onClick={toggleSound}>
-        <img
-          src={isMuted ? "/images/sound-off.png" : "/images/sound-on.png"}
-          alt={isMuted ? "Muted" : "Unmuted"}
-          className="sound-icon"
-        />
+        <img src={isMuted ? "/images/sound-off.png" : "/images/sound-on.png"} alt="Sound" />
       </button>
-
-      {/* Audio Element (Hidden) */}
       <audio ref={audioRef} src="/paper-planes-chill-future-beat-283956.mp3" />
 
-      {/* Question Box */}
       <div className="question-upper">
         <h2 className="question-title">Question:</h2>
-        <p className="question-text">
-          A triangle has sides of 5 cm, 5 cm, and 6 cm. What type of triangle is it?
-        </p>
+        <p className="question-text">{questions[currentIndex]}</p>
       </div>
 
-      {/* Answer Section */}
       <div className="question-lower">
-        <input type="text" placeholder="Type your answer here..." className="answer-input" />
-        <Link to = "/reward"><button className="submit-button">Submit</button></Link>
+        <input 
+          type="text" 
+          value={userAnswer} 
+          onChange={(e) => setUserAnswer(e.target.value)} 
+          placeholder="Type your answer here..." 
+          className="answer-input"
+        />
+        <button onClick={handleSubmit} className="submit-button">Submit</button>
       </div>
 
-      {/* Character Image */}
-      <img src="/images/eagle4.png" alt="Eagle" className="eagle-character" />
+      <img src="/images/eagle.png" alt="Eagle Character" className="eagle-character" />
+      <img src="/images/setting.png" alt="Settings" className="settingButton" />
     </div>
   );
 };

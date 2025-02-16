@@ -25,19 +25,15 @@ body {
     flex-direction: column;
     position: relative;
     animation: fadeIn 1s ease-in-out forwards;
-    
 }
 
 /* Two-Tone Background */
 .question-upper {
-
     width: 60%;
     padding: 40px 20px;
     text-align: left;
     margin-top: 20px;
     margin-left: 80px;
-
-
 }
 
 .question-lower {
@@ -46,48 +42,46 @@ body {
     padding: 30px 20px;
     display: flex;
     flex-direction: column;
-    
     position: relative;
-    height: 200px;
+    height: 300px;
+
 }
 
 /* Sound Button */
 .sound-button {
-    position: absolute;
-    top: 12px;  /* Adjusted for proper top alignment */
-    right: 65px; /* Adjusted for proper right alignment */
+    
     background: none;
     border: none;
     cursor: pointer;
     padding: 0;
-    width: 40px;  /* Adjust button size */
-    height: 40px;
+    width: 16px;  /* Make button smaller */
+    height: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
+
+    margin-top: 8px;
+    margin-right: 15px;
 }
 
-/* Sound Icon */
-.sound-icon {
-    width: 28px; /* Reduce the size of the image */
-    height: auto;
-    transition: opacity 0.2s ease-in-out;
+
+.sound-button img {
+    width: 40px; /* Adjust as needed */
+    height: auto; /* Maintain aspect ratio */
 }
 
 .sound-button:hover .sound-icon {
     opacity: 0.7;
 }
 
-
 /* Question Text */
 .question-title, .question-text {
     color: #729DAC;
-
-font-family: Raleway;
-font-size: 30px;
-font-style: normal;
-font-weight: 900;
-line-height: normal;
+    font-family: Raleway;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
 }
 
 /* Input Field */
@@ -104,7 +98,6 @@ line-height: normal;
     transition: border 0.2s ease-in-out;
     margin-left: 60px;
     font-style: italic;
-
 }
 
 .answer-input:focus {
@@ -152,4 +145,5 @@ line-height: normal;
     height: 40px;
     width: auto; 
 }
+
 
