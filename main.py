@@ -1,45 +1,38 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-# import streamlit as st
 from dotenv import load_dotenv
-import os 
+import os
 from langchain_groq import ChatGroq
 from langchain_core.output_parsers import StrOutputParser
-from langchain_community.document_loaders import TextLoader
 
-QUESTIONS = []
-ANSWERS = []
-
-
-def remove_thinking(s):
-    return str(s).split("</think>\n\n")[-1]
-
-
-# Flask API Setup
+# Initialize Flask App
 app = Flask(__name__)
 CORS(app)
 
-# Default Route to Avoid 404 Errors
+# Load API Key
+load_dotenv()
+api_key: str = os.getenv("key")
+model: str = "deepseek-r1-distill-llama-70b"
+deepseek = ChatGroq(api_key=api_key, model_name=model)
+
+# Configure Output Parsing
+parser = StrOutputParser()
+deepseek_chain = deepseek | parser
+
+# Global Variables to Store Questions and Answers
+QUESTIONS = []
+ANSWERS = []
+
+# Helper Function to Clean AI Output
+def remove_thinking(s):
+    return str(s).split("</think>\n\n")[-1]
+
+# Default Route
 @app.route("/", methods=["GET"])
 def home():
     return jsonify({"message": "Numeria API is running!"})
 
-# # Streamlit UI
-# st.title("Numeria")
-
-
-# DeepSeek API
-load_dotenv()
-api_key : str  = os.getenv("key")
-model: str ="deepseek-r1-distill-llama-70b"
-deepseek = ChatGroq(api_key=api_key, model_name = model)
-
-# Getting only result from the model
-parser = StrOutputParser()
-deepseek_chain = deepseek|parser
-
-
-# Template to insert into DeepSeek
+# **Your Original Template**
 template = """
 "You are a math teacher. You are teaching students in grade {grade} in {location}, specifically following the curriculum provided.
 Let N represent the number of categories outlined in the curriculum.
@@ -70,9 +63,11 @@ ANSWERS:
 N.[Answer N]\n'
 """
 
-# API for fetching generated questions and answers
+# API: Generate Questions (Fixed to Keep Your Template)
 @app.route("/generate-questions", methods=["POST"])
 def generate_questions():
+    global QUESTIONS, ANSWERS  # Ensure we're modifying the global lists
+
     data = request.json
     grade = data.get("grade")
     location = data.get("country")
@@ -81,74 +76,66 @@ def generate_questions():
     if not grade or not location or not curriculum:
         return jsonify({"error": "Missing fields"}), 400
 
+    # Keep your original template formatting
+    formatted_template = template.format(grade=grade, location=location, curriculum=curriculum)
 
+    try:
+        response = deepseek_chain.invoke(formatted_template)
+        clean_response = remove_thinking(response)
 
-    template = template.format(grade = grade, location = location, curriculum = curriculum)
-    response = deepseek_chain.invoke(template) 
-    # get the last index after splitting
-    clean_response = str(response).split("</think>\n\n")[-1]
-    
-    # split the questions and answers
-    response_split = clean_response.split("\n\n")
-    QUESTIONS, ANSWERS = (response_split[0].split("\n"))[1:], (response_split[1].split("\n"))[1:]
+        # Split Questions and Answers
+        response_split = clean_response.split("\n\n")
+        if len(response_split) < 2:
+            return jsonify({"error": "Failed to parse questions and answers"}), 500
 
-    #clean answers
-    for i in range(len(ANSWERS)):
-        ANSWERS[i] = (ANSWERS[i]).strip()
-        ANSWERS[i] = ANSWERS[i].split(" ")[-1]
-        # if not answers[i].isnumeric():
-        #     answers[i] = answers[i][0]
+        QUESTIONS = response_split[0].split("\n")[1:]  # Extract questions
+        ANSWERS = response_split[1].split("\n")[1:]  # Extract answers
 
-    # questions = [
-    #     "What is 2 + 2?",
-    #     "How many sides does a triangle have?",
-    #     "What is 5 * 6?",
-    #     "What is 10 divided by 2?"
-    # ]
-    # answers = ["4", "3", "30", "5"]
+        # Clean up answers
+        for i in range(len(ANSWERS)):
+            ANSWERS[i] = ANSWERS[i].strip().split(" ")[-1]
 
-    return jsonify({"questions": QUESTIONS, "answers": ANSWERS})
+        return jsonify({"questions": QUESTIONS, "answers": ANSWERS})
 
-# API for checking answers
+    except Exception as e:
+        return jsonify({"error": f"Failed to generate questions: {str(e)}"}), 500
+
+# API: Check Answer
 @app.route("/check-answer", methods=["POST"])
 def check_answer():
     data = request.json
     question = data.get("question")
     user_answer = data.get("userAnswer")
-    
+
     if not question or not user_answer:
         return jsonify({"error": "Missing fields"}), 400
-    
-    # correct_answers = {
-    #     "What is 2 + 2?": "4",
-    #     "How many sides does a triangle have?": "3",
-    #     "What is 5 * 6?": "30",
-    #     "What is 10 divided by 2?": "5"
-    # }
-    
-    # correct = correct_answers.get(question, "") == user_answer
 
-    #figure out which index the question is in
-    i = QUESTIONS.find(question)
+    try:
+        index = QUESTIONS.index(question)
+    except ValueError:
+        return jsonify({"error": "Question not found"}), 400
 
-    #if they get the answer wrong
-    # if int(user_answer) != int(ANSWERS[i]):
-        # incorrect = True
-    curr_q = QUESTIONS[i]
-    curr_ans = ANSWERS[i]
-    # brief explaination
-    explain = (
-        """
-        This is the math question the user needed to answer: "{question}", and this is the correct answer: "{answer}". However, the user chose: "{user_ans}".
-        Can you briefly explain where they might have gone wrong and how to solve this question?
-        Your extire response must not exceed 100 words.
-        """
-    )
-    explain = explain.format(question = curr_q, answer = curr_ans, user_ans = user_answer)
-    response = deepseek_chain.invoke(explain)
-    #print(remove_thinking(response))
-    explanation = remove_thinking(response)
-    return jsonify({"explanation": explanation})
+    correct_answer = ANSWERS[index].strip()
 
+    if user_answer.strip() == correct_answer:
+        return jsonify({"correct": True})
+
+    # Generate explanation
+    explanation_prompt = f"""
+    This is the math question the user needed to answer: "{question}", and this is the correct answer: "{correct_answer}".
+    However, the user chose: "{user_answer}". 
+    Can you briefly explain where they might have gone wrong and how to solve this question?
+    Your response must not exceed 100 words.
+    """
+
+    try:
+        response = deepseek_chain.invoke(explanation_prompt)
+        explanation = remove_thinking(response)
+
+        return jsonify({"correct": False, "explanation": explanation})
+    except Exception as e:
+        return jsonify({"correct": False, "explanation": "Could not generate explanation."})
+
+# Run Flask App
 if __name__ == "__main__":
     app.run(debug=True, port=5000)

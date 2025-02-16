@@ -13,64 +13,57 @@ const Question: React.FC = () => {
   const [isMuted, setIsMuted] = useState(false);
 
   useEffect(() => {
-    const storedQuestions = localStorage.getItem("questions");
-    const storedAnswers = localStorage.getItem("answers");
-
-    if (storedQuestions && storedAnswers) {
-      setQuestions(JSON.parse(storedQuestions));
-      setAnswers(JSON.parse(storedAnswers));
-    }
-
-    audioRef.current = new Audio("/paper-planes-chill-future-beat-283956.mp3");
-    audioRef.current.loop = true;
-    if (!isMuted) audioRef.current.play();
+    fetch("http://127.0.0.1:5000/generate-questions", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        grade: "3", // Example grade (Replace dynamically)
+        country: "USA",
+        curriculum: "Basic Math Concepts",
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Received API response:", data); // ✅ Log entire API response
+        if (data.questions && data.answers) {
+          setQuestions(data.questions);
+          setAnswers(data.answers);
+          console.log("Questions received:", data.questions); // ✅ Log only questions
+        } else {
+          console.error("No questions received:", data);
+        }
+      })
+      .catch((error) => console.error("Error fetching questions:", error));
   }, []);
+  
 
+  // Toggle Sound Function
   const toggleSound = () => {
     if (!isMuted) {
-      audioRef.current?.pause();
+      audioRef.current?.pause(); // Mute sound
     } else {
-      audioRef.current?.play();
+      audioRef.current?.play(); // Unmute and play sound
     }
     setIsMuted(!isMuted);
   };
 
-  // Fetch if the answer is correct
-  const fetchAnswer = async (question: string, userAnswer: string) => {
-    try {
-      const response = await fetch("http://127.0.0.1:5000/check-answer", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ question, userAnswer })
-      });
-      const data = await response.json();
-      return data.correct; // Boolean indicating correctness
-    } catch (error) {
-      console.error("Error fetching answer validation:", error);
-      return false;
-    }
-  };
+  // Effect to Load Audio
+  useEffect(() => {
+    audioRef.current = new Audio("/paper-planes-chill-future-beat-283956.mp3");
+    audioRef.current.loop = true;
+  }, []);
 
-  // Fetch explanation if answer is wrong
-  const fetchExplanation = async (question: string, userAnswer: string) => {
-    try {
-      const response = await fetch("http://127.0.0.1:5000/get-explanation", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ question, userAnswer })
-      });
-      const data = await response.json();
-      return data.explanation; // Explanation string
-    } catch (error) {
-      console.error("Error fetching explanation:", error);
-      return "Oops! Something went wrong.";
-    }
-  };
-
+  // Handle Answer Submission
   const handleSubmit = async () => {
-    const isCorrect = await fetchAnswer(questions[currentIndex], userAnswer);
+    const response = await fetch("http://127.0.0.1:5000/check-answer", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ question: questions[currentIndex], userAnswer }),
+    });
 
-    if (isCorrect) {
+    const data = await response.json();
+
+    if (data.correct) {
       alert("Correct!");
       setCorrectCount(correctCount + 1);
 
@@ -79,38 +72,43 @@ const Question: React.FC = () => {
         setCorrectCount(0);
       }
 
-      // Move to the next question or finish
       if (currentIndex < questions.length - 1) {
         setCurrentIndex(currentIndex + 1);
         setUserAnswer("");
       } else {
-        navigate("/reward"); // Redirect to reward page after last question
+        navigate("/reward");
       }
     } else {
-      const explanation = await fetchExplanation(questions[currentIndex], userAnswer);
-      alert(`${explanation} Wrong! Try again.`);
+      alert(`${data.explanation} Wrong! Try again.`);
     }
   };
 
   return (
     <div className="question-container1">
       <button className="sound-button" onClick={toggleSound}>
-        <img src={isMuted ? "/images/sound-off.png" : "/images/sound-on.png"} alt="Sound" />
+        <img
+          src={isMuted ? "/images/sound-off.png" : "/images/sound-on.png"}
+          alt={isMuted ? "Muted" : "Unmuted"}
+          className="sound-icon"
+        />
       </button>
+
       <audio ref={audioRef} src="/paper-planes-chill-future-beat-283956.mp3" />
 
       <div className="question-upper">
         <h2 className="question-title">Question:</h2>
-        <p className="question-text">{questions[currentIndex]}</p>
+        <p className="question-text">
+          {questions.length > 0 ? questions[currentIndex] : "Loading question..."}
+        </p>
       </div>
 
       <div className="question-lower">
-        <input 
-          type="text" 
-          value={userAnswer} 
-          onChange={(e) => setUserAnswer(e.target.value)} 
-          placeholder="Type your answer here..." 
+        <input
+          type="text"
+          placeholder="Type your answer here..."
           className="answer-input"
+          value={userAnswer}
+          onChange={(e) => setUserAnswer(e.target.value)}
         />
         <button onClick={handleSubmit} className="submit-button">Submit</button>
       </div>
