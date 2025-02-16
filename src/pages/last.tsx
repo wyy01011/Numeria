@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
-import "../styles/question.css"; // Import CSS
+import "../styles/last.css"; // Import CSS
 import { Link } from "react-router-dom";
 
-const Question: React.FC = () => {
+const Last: React.FC = () => {
   const [isMuted, setIsMuted] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
@@ -24,9 +24,12 @@ const Question: React.FC = () => {
 
   return (
     <div className="question-container">
-        <Link to ="/"><img src = "images/setting.png" alt="setting" className="settingButton"></img></Link>
+      {/* Setting Button */}
+      <Link to="/">
+        <img src="images/setting.png" alt="setting" className="settingButton" />
+      </Link>
 
-      {/* Sound Button with Image */}
+      {/* Sound Button */}
       <button className="sound-button" onClick={toggleSound}>
         <img
           src={isMuted ? "/images/sound-off.png" : "/images/sound-on.png"}
@@ -35,27 +38,26 @@ const Question: React.FC = () => {
         />
       </button>
 
-      {/* Audio Element (Hidden) */}
+      {/* Background Audio */}
       <audio ref={audioRef} src="/paper-planes-chill-future-beat-283956.mp3" />
 
-      {/* Question Box */}
-      <div className="question-upper">
-        <h2 className="question-title">Question:</h2>
-        <p className="question-text">
-          A triangle has sides of 5 cm, 5 cm, and 6 cm. What type of triangle is it?
-        </p>
-      </div>
+      {/* Container for Island & Text */}
+      <div className="island-container">
+        {/* Image of Completed Island */}
+        <img
+          className="completedImg"
+          src="/images/Islands_Completed_Quest.png"
+          alt="Island Completed"
+        />
 
-      {/* Answer Section */}
-      <div className="question-lower">
-        <input type="text" placeholder="Type your answer here..." className="answer-input" />
-        <Link to = "/reward"><button className="submit-button">Submit</button></Link>
+        {/* Message Container */}
+        <div className="messageContainer">
+          <p>Great work, today! Come back tomorrow to unlock treasure on <span className="bolding">Data Island</span></p>
+          
+        </div>
       </div>
-
-      {/* Character Image */}
-      <img src="/images/eagle4.png" alt="Eagle" className="eagle-character" />
     </div>
   );
 };
 
-export default Question;
+export default Last;

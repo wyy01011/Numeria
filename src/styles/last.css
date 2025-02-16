@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
+
+/* General Page Styles */
+body, html {
+    background-color: #ffeec7;
+    margin: 0;
+    padding: 0;
+    font-family: "Raleway", sans-serif;
+    overflow: auto; /* Allows scrolling */
+    min-height: 100vh;
+}
+
+/* Main Container */
+.question-container {
+    width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    padding: 20px;
+    animation: fadeIn 1s ease-in-out forwards;
+}
+
+/* Island + Text Side by Side */
+.island-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px; /* Adjust space between image and text */
+    max-width: 80%;
+    margin-top: 40px;
+}
+
+/* Image of Completed Island */
+.completedImg {
+    width: 750px;
+    height: auto;
+    max-width: 100%;
+}
+
+/* Message Box */
+.messageContainer {
+    font-family: "Raleway", sans-serif;
+    font-size: 20px;
+    width: 350px; /* Adjust width */
+    text-align: left;
+    color: #729DAC;
+    font-weight: 500;
+    line-height: 1.5;
+
+    margin-bottom: 100px;
+    margin-right: 50px;
+
+    z-index: 10;
+}
+
+/* Bold Styling */
+.bolding {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+/* Sound Button */
+.sound-button {
+    position: fixed;
+    top: 22px;
+    right: 75px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Sound Icon */
+.sound-icon {
+    width: 28px;
+    height: auto;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.sound-button:hover .sound-icon {
+    opacity: 0.7;
+}
+
+/* Setting Button */
+.settingButton {
+    position: fixed;
+    top: 20px;
+    right: 30px;
+    height: 40px;
+    width: auto;
+}

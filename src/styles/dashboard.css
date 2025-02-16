@@ -1,0 +1,14 @@
+/* Dashboard Container */
+.dashboard-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    min-height: 100vh; /* Ensure full page height */
+}
+
+/* Dashboard Image */
+.dashboard-image {
+    width: 100vw;
+    height: auto;
+}

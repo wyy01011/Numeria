@@ -11,6 +11,7 @@ import Trans1 from './pages/trans1';
 import Trans2 from './pages/trans2';
 import Trans3 from './pages/trans3';
 import Input from './pages/input';
+import Last from './pages/last';
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
         <Route path="/transition2" element={<Trans2 />} />
         <Route path="/transition3" element={<Trans3 />} />
         <Route path="/input" element={<Input />} />
+        <Route path="/last" element={<Last />} />
 
       </Routes>
     </Router>

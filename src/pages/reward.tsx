@@ -1,29 +1,26 @@
-import React from "react";
-import { motion } from "framer-motion";
-import "./../styles/reward.css";
+import React, { useState, useEffect } from "react";
+import "../styles/reward.css";
+import Last from "./last.tsx";
 
-const Reward = () => {
-  return (
-    <div className="rewardContainer">
-      <motion.div 
-        className="youGotContainer"
-        initial={{ scale: 0, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 0.6, type: "spring", stiffness: 120 }}
-      >
-        <p className="youGot">You Got</p>
-      </motion.div>
-      
-      <div className="poutinePic">
-        <img src="./images/poutine.png" alt="Poutine" width="250" height="250"/>
-      </div>
+const Reward: React.FC = () => {
+  const [transition, setTransition] = useState(false);
 
-      <motion.div className="poutine"
-        initial={{ scale: 0, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 0.6, type: "spring", stiffness: 120 }}>
-        <p>POUTINE!!</p>
-      </motion.div>
+  useEffect(() => {
+    // Transition to Last.tsx after 3 seconds
+    const timeout = setTimeout(() => {
+      setTransition(true);
+    }, 3000);
+
+    return () => clearTimeout(timeout);
+  }, []);
+
+  return transition ? (
+    <Last /> // Switch to Last.tsx after 3 seconds
+  ) : (
+    <div className="reward-container fade-in">
+      <h1 className="reward-title">🎉 Woohoo! 🎉</h1>
+      <p className="reward-message">You got a delicious poutine! 🍟🧀</p>
+      <img src="/images/poutine.png" alt="Poutine" className="poutine-image" />
     </div>
   );
 };

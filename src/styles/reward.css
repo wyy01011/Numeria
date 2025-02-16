@@ -1,67 +1,85 @@
-
-  
-.youGotContainer {
-    margin-top: 80px; /* Adjust to make the spacing smaller */
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  
-  .youGot {
-    font-size: 4rem;
-    margin: 0; /* Removes default margin */
-  }
-  
-.poutine{
-    text-align: center;
-    font-size: 40px;
-    margin-top: 0px;
-}
-
-.poutinePic{
-    text-align: center;
-    margin-top: 0;
-    margin-bottom: 0;
-}
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
 
 .reward-container {
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden; /* Prevents accidental scrolling */
-    overflow: hidden; /* Disables scrolling */
-    height: 100vh; /* Ensures full viewport height */
-    margin: 0;
-    padding: 0;
+  text-align: center;
+  font-family: 'Raleway', sans-serif;
+
+  padding: 30px;
+  border-radius: 15px;
+  max-width: 450px;
+  margin: auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.reward-title {
+  color: #d32f2f;
+  font-size: 2.5rem;
+  font-weight: 700;
+  animation: pop-in 0.5s ease-in-out;
+}
+
+.reward-message {
+  color: #5d4037;
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+  animation: pop-in 0.6s ease-in-out;
+  font-weight: bold;
+}
+
+.poutine-image {
+  width: 100%;
+  max-width: 280px;
+  height: auto;
+  margin-top: 15px;
+  border-radius: 12px;
+  animation: bounce-in 1s ease-in-out;
+}
+
+/* Confetti animation */
+.confetti {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 100vw;
+  height: 100vh;
+  background: url('https://media.giphy.com/media/3ov9jNziFTMfzSumAw/giphy.gif') no-repeat center;
+  background-size: cover;
+  pointer-events: none;
+  animation: fade-out 1.5s ease-in-out forwards;
+}
+
+/* Animations */
+@keyframes pop-in {
+  0% {
+    transform: scale(0);
+    opacity: 0;
   }
-  
-  .reward-container::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 300%;
-    height: 300%;
-    background: radial-gradient(circle, rgba(255, 223, 50, 0.3) 20%, rgba(255, 223, 50, 0.6) 80%),
-                repeating-conic-gradient(rgba(255, 255, 200, 0.6) 0deg, rgba(255, 255, 200, 0.6) 15deg,
-                                          rgba(255, 223, 50, 0.4) 15deg, rgba(255, 223, 50, 0.4) 30deg);
-    transform: translate(-50%, -50%);
-    animation: rotateBackground 8s linear infinite;
-    z-index: -1; /* Keeps it behind content */
+  100% {
+    transform: scale(1);
+    opacity: 1;
   }
-  
-  @keyframes rotateBackground {
-    from {
-      transform: translate(-50%, -50%) rotate(0deg);
-    }
-    to {
-      transform: translate(-50%, -50%) rotate(360deg);
-    }
+}
+
+@keyframes bounce-in {
+  0% {
+    transform: translateY(-100px);
+    opacity: 0;
   }
-  
-  
-      
-  
+  60% {
+    transform: translateY(20px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
