@@ -7,7 +7,7 @@ const Home = () => {
     <div className="homeContainer">
       {/* Welcome Back Text */}
       <div className="welcomeBack">
-        <p>Welcome back, Mathilda!</p>
+        <p>Welcome!</p>
       </div>
 
       {/* Main Content */}
