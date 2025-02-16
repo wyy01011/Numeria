@@ -16,7 +16,7 @@ pip install langchain langchain-groq python-dotenv langchain-community streamlit
 ```
 
 ## 🔑 API Configuration
-This project uses the **DeepSeek API**. We must set up your API key in an `.env` file.
+This project uses the **DeepSeek API**. We must set up our API key in an `.env` file.
 
 ## ▶️ Running the Application
 To launch the Streamlit app, run:
