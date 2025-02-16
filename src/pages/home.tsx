@@ -21,7 +21,7 @@ const Home = () => {
 
           {/* Buttons */}
           <div className="buttons">
-            <Link to="/avatar">
+            <Link to="/input">
               <button>play</button>
             </Link>
             <Link to="/dashboard">

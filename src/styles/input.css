@@ -1,0 +1,124 @@
+/* General Page Styling */
+.input-container {
+    min-height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    background-color: #ffeec7;
+    overflow: hidden !important;
+}
+
+/* Form Box */
+.input-form {
+    max-width: 1000px;
+    width: 100%;
+    background: #ffeec7;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+/* Title */
+.title {
+    color: #729DAC;
+    font-family: Raleway, sans-serif;
+    font-size: 50px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+}
+
+/* Description */
+.description {
+    font-size: 14px;
+    color: #729DAC;
+    margin-bottom: 20px;
+}
+
+/* Form Styling */
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Form Groups */
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-weight: 600;
+    color: #729DAC;
+    margin-bottom: 5px;
+}
+
+/* Placeholder styling for textarea */
+textarea::placeholder {
+    font-family: "Raleway", sans-serif;
+    font-style: italic;
+    font-size: 16px;
+    color: #a9a9a9;
+    opacity: 1;
+}
+
+/* Fixing placeholder for select */
+select:invalid {
+    font-family: "Raleway", sans-serif;
+    font-style: italic;
+    font-size: 16px;
+    color: #a9a9a9;
+}
+
+/* Styling for disabled option inside select */
+select option:disabled {
+    color: #a9a9a9;
+    font-style: italic;
+}
+
+/* Input Fields */
+textarea, select {
+    width: 100%;
+    padding: 12px;
+    border: none; /* Removed the frame */
+    border-radius: 5px;
+    background: #DCBBB64A;
+    font-size: 14px;
+    outline: none; /* Prevents highlight border on focus */
+    font-family: "Raleway", sans-serif; /* Change to your desired font */
+    font-size: 16px;
+    font-weight: normal;
+    color: #4a4a4a; /* Darker text color for readability */
+}
+
+/* Ensuring textarea looks clean */
+textarea {
+    resize: none;
+    height: 100px;
+}
+
+.submitBtnContainer{
+ 
+    display: flex;
+    justify-content: flex-end; /* Moves the button to the right */
+    width: 100%;
+}
+
+/* Submit Button */
+.submit-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #4f7c8a;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+    
+}
+
+.submit-btn:hover {
+    background-color: #3e636e;
+}
