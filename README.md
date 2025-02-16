@@ -9,14 +9,14 @@ This project is an AI-powered math tutor that generates grade-specific math ques
 - Built using **Streamlit** for an interactive UI.
 
 ## 🛠️ Tech Stack & Dependencies
-To run this project, you need to install the following dependencies:
+To run this project, we need to install the following dependencies:
 
 ```bash
 pip install langchain langchain-groq python-dotenv langchain-community streamlit
 ```
 
 ## 🔑 API Configuration
-This project uses the **DeepSeek API**. You must set up your API key in an `.env` file.
+This project uses the **DeepSeek API**. We must set up your API key in an `.env` file.
 
 ## ▶️ Running the Application
 To launch the Streamlit app, run:
