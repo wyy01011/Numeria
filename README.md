@@ -21,8 +21,7 @@ This project uses the **DeepSeek API**. You must set up your API key in an `.env
 ## ▶️ Running the Application
 To launch the Streamlit app, run:
 ```bash
-streamlit run app.py
+streamlit run main.py
 ```
-This will start a web UI where you can generate math questions.
 
 
