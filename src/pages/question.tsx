@@ -35,7 +35,8 @@ const Question: React.FC = () => {
     setIsMuted(!isMuted);
   };
 
-  /* const fetchAnswer = async (question: string, userAnswer: string) => {
+  // Fetch if the answer is correct
+  const fetchAnswer = async (question: string, userAnswer: string) => {
     try {
       const response = await fetch("http://127.0.0.1:5000/check-answer", {
         method: "POST",
@@ -43,15 +44,32 @@ const Question: React.FC = () => {
         body: JSON.stringify({ question, userAnswer })
       });
       const data = await response.json();
-      return data.correct;
+      return data.correct; // Boolean indicating correctness
     } catch (error) {
       console.error("Error fetching answer validation:", error);
       return false;
     }
   };
 
+  // Fetch explanation if answer is wrong
+  const fetchExplanation = async (question: string, userAnswer: string) => {
+    try {
+      const response = await fetch("http://127.0.0.1:5000/get-explanation", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ question, userAnswer })
+      });
+      const data = await response.json();
+      return data.explanation; // Explanation string
+    } catch (error) {
+      console.error("Error fetching explanation:", error);
+      return "Oops! Something went wrong.";
+    }
+  };
+
   const handleSubmit = async () => {
     const isCorrect = await fetchAnswer(questions[currentIndex], userAnswer);
+
     if (isCorrect) {
       alert("Correct!");
       setCorrectCount(correctCount + 1);
@@ -61,16 +79,18 @@ const Question: React.FC = () => {
         setCorrectCount(0);
       }
 
+      // Move to the next question or finish
       if (currentIndex < questions.length - 1) {
         setCurrentIndex(currentIndex + 1);
         setUserAnswer("");
       } else {
-        navigate("/reward");
+        navigate("/reward"); // Redirect to reward page after last question
       }
     } else {
-      alert("Wrong! Try again.");
+      const explanation = await fetchExplanation(questions[currentIndex], userAnswer);
+      alert(`${explanation} Wrong! Try again.`);
     }
-  }; */
+  };
 
   return (
     <div className="question-container1">
@@ -92,8 +112,7 @@ const Question: React.FC = () => {
           placeholder="Type your answer here..." 
           className="answer-input"
         />
-        {/* <button onClick={handleSubmit} className="submit-button">Submit</button> */}
-        {<button className="submit-button">Submit</button>}
+        <button onClick={handleSubmit} className="submit-button">Submit</button>
       </div>
 
       <img src="/images/eagle.png" alt="Eagle Character" className="eagle-character" />
