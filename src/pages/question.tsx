@@ -23,7 +23,7 @@ const Question: React.FC = () => {
   }, []);
 
   return (
-    <div className="question-container">
+    <div className="question-container1">
         <Link to ="/"><img src = "images/setting.png" alt="setting" className="settingButton"></img></Link>
 
       {/* Sound Button with Image */}

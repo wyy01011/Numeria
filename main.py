@@ -184,6 +184,3 @@ if st.button("Generate Math Questions"):
 
 
 # # # once for loop is done, they win the level
-
-
-

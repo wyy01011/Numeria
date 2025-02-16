@@ -17,15 +17,13 @@ body {
 }
 
 /* Main Container */
-.question-container {
+.question-container1 {
     width: 100vw;
     height: 100vh; /* Full viewport height */
     overflow: hidden; /* Disable scrolling */
     display: flex;
     flex-direction: column;
-    justify-content: center;
     position: relative;
-
     animation: fadeIn 1s ease-in-out forwards;
     
 }
@@ -36,8 +34,9 @@ body {
     width: 60%;
     padding: 40px 20px;
     text-align: left;
-    margin-left: 70px;
     margin-top: 20px;
+    margin-left: 80px;
+
 
 }
 
