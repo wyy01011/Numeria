@@ -42,6 +42,8 @@ const Input: React.FC = () => {
     } catch (error) {
       console.error("Error fetching questions:", error);
     }
+
+    navigate("/avatar"); 
   };
 
   return (

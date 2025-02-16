@@ -35,7 +35,7 @@ const Question: React.FC = () => {
     setIsMuted(!isMuted);
   };
 
-  const fetchAnswer = async (question: string, userAnswer: string) => {
+  /* const fetchAnswer = async (question: string, userAnswer: string) => {
     try {
       const response = await fetch("http://127.0.0.1:5000/check-answer", {
         method: "POST",
@@ -70,7 +70,7 @@ const Question: React.FC = () => {
     } else {
       alert("Wrong! Try again.");
     }
-  };
+  }; */
 
   return (
     <div className="question-container1">
@@ -92,7 +92,8 @@ const Question: React.FC = () => {
           placeholder="Type your answer here..." 
           className="answer-input"
         />
-        <button onClick={handleSubmit} className="submit-button">Submit</button>
+        {/* <button onClick={handleSubmit} className="submit-button">Submit</button> */}
+        {<button className="submit-button">Submit</button>}
       </div>
 
       <img src="/images/eagle.png" alt="Eagle Character" className="eagle-character" />
