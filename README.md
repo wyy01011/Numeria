@@ -41,18 +41,12 @@ pip install langchain langchain-groq python-dotenv langchain-community streamlit
 
 ## 🔑 API Configuration
 This project uses the **DeepSeek API**. We must set up our API key in an `.env` file.
-
-📦 Numeria
- - ├── 📜 README.md   # Project Documentation
- - ├── 📂 src         # Source Code
- - ├── 📜 .env        # API Key 
- - ├── 📜 requirements.txt # Python Dependencies
+You can get a free API key through g[roq.com](url).
 
 ## ▶️ Running the Application
-To launch the Streamlit app, run:
-```bash
-streamlit run main.py
-```
+The application will be deployed, so make sure to click this link to play the game!
+
+
 ## Scaling the project
 
 - We are planning to connect educators aswell so they can add this game in classroom and track progress of students.
