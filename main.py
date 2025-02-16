@@ -91,6 +91,10 @@ def generate_questions():
         QUESTIONS = response_split[0].split("\n")[1:]  # Extract questions
         ANSWERS = response_split[1].split("\n")[1:]  # Extract answers
 
+        if len(QUESTIONS) > 4:
+            QUESTIONS = QUESTIONS[:4]
+            ANSWERS = ANSWERS[:4]
+
         # Clean up answers
         for i in range(len(ANSWERS)):
             ANSWERS[i] = ANSWERS[i].strip().split(" ")[-1]
