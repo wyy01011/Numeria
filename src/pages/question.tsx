@@ -8,53 +8,59 @@ const Question: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [userAnswer, setUserAnswer] = useState("");
   const [correctCount, setCorrectCount] = useState(0);
+  const [loading, setLoading] = useState(true); // Added loading state
   const navigate = useNavigate();
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [isMuted, setIsMuted] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
     fetch("http://127.0.0.1:5000/generate-questions", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        grade: "3", // Example grade (Replace dynamically)
+        grade: "3",
         country: "USA",
         curriculum: "Basic Math Concepts",
       }),
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Received API response:", data); // ✅ Log entire API response
+        console.log("Received API response:", data);
         if (data.questions && data.answers) {
           setQuestions(data.questions);
           setAnswers(data.answers);
-          console.log("Questions received:", data.questions); // ✅ Log only questions
         } else {
           console.error("No questions received:", data);
         }
+        setLoading(false);
       })
-      .catch((error) => console.error("Error fetching questions:", error));
+      .catch((error) => {
+        console.error("Error fetching questions:", error);
+        setLoading(false);
+      });
   }, []);
-  
 
-  // Toggle Sound Function
   const toggleSound = () => {
     if (!isMuted) {
-      audioRef.current?.pause(); // Mute sound
+      audioRef.current?.pause();
     } else {
-      audioRef.current?.play(); // Unmute and play sound
+      audioRef.current?.play();
     }
     setIsMuted(!isMuted);
   };
 
-  // Effect to Load Audio
   useEffect(() => {
     audioRef.current = new Audio("/paper-planes-chill-future-beat-283956.mp3");
     audioRef.current.loop = true;
   }, []);
 
-  // Handle Answer Submission
   const handleSubmit = async () => {
+    if (questions.length === 0) {
+      alert("No question available. Please try again.");
+      return;
+    }
+
     const response = await fetch("http://127.0.0.1:5000/check-answer", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -97,9 +103,18 @@ const Question: React.FC = () => {
 
       <div className="question-upper">
         <h2 className="question-title">Question:</h2>
-        <p className="question-text">
-          {questions.length > 0 ? questions[currentIndex] : "Loading question..."}
-        </p>
+        {loading ? (
+          <p className="question-text">Loading question...</p>
+        ) : questions.length > 0 ? (
+          <p className="question-text">{questions[currentIndex]}</p>
+        ) : (
+          <div>
+            <p className="question-text">No questions available.</p>
+            <button onClick={() => window.location.reload()} className="retry-button">
+              Retry
+            </button>
+          </div>
+        )}
       </div>
 
       <div className="question-lower">

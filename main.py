@@ -11,7 +11,7 @@ CORS(app)
 
 # Load API Key
 load_dotenv()
-api_key: str = os.getenv("key")
+api_key = "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"
 model: str = "deepseek-r1-distill-llama-70b"
 deepseek = ChatGroq(api_key=api_key, model_name=model)
 

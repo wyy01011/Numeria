@@ -11,23 +11,23 @@ const Avatar = () => {
 
       <div className="pageContainer">
         <div className="giraffeContainer">
-            <Link to ="/"><img src="images/giraffe.png" alt="giraffe" className="avatarImage" /></Link>
+            <Link to ="/level"><img src="images/giraffe.png" alt="giraffe" className="avatarImage" /></Link>
           
-            <button className="avatarButton"><Link to="/"> tanzanian <br /> giraffe</Link></button>
+            <button className="avatarButton"><Link to="/level"> tanzanian <br /> giraffe</Link></button>
           
         </div>
         
         <div className="mooseContainer">
             <Link to="/level"><img src="images/moose.png" alt="moose" className="avatarImage" /></Link>
           
-            <button className="avatarButton"><Link to="/question"> canadian <br /></Link> moose</button>
+            <button className="avatarButton"><Link to="/level"> canadian <br /></Link> moose</button>
           
         </div>
 
         <div className="racoonContainer">
-            <Link to="/"><img src="images/racoon.png" alt="racoon" className="avatarImage" /></Link>
+            <Link to="/level"><img src="images/racoon.png" alt="racoon" className="avatarImage" /></Link>
           
-            <button className="avatarButton"><Link to="/"> japanese <br /> racoon</Link></button>
+            <button className="avatarButton"><Link to="/level"> japanese <br /> racoon</Link></button>
           
         </div>
 
