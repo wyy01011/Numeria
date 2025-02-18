@@ -61,11 +61,12 @@ const Question: React.FC = () => {
       return;
     }
 
-    const response = await fetch("https://numeria-7m4h.onrender.com", {
+    const response = await fetch("https://numeria-7m4h.onrender.com/check-answer", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ question: questions[currentIndex], userAnswer }),
     });
+    
 
     const data = await response.json();
 
