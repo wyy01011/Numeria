@@ -15,7 +15,7 @@ const Question: React.FC = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch("http://127.0.0.1:5000/generate-questions", {
+    fetch("https://numeria-7m4h.onrender.com/generate-questions", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
