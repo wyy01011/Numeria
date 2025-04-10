@@ -44,16 +44,15 @@ pip install langchain langchain-groq python-dotenv langchain-community streamlit
 
 ## 🔑 API Configuration
 This project uses the **DeepSeek API**. We must set up our API key in an `.env` file.
-You can get a free API key through g[roq.com](url).
+You can get a free API key through [groq.com](url).
 
 ## ▶️ Running the Application
 The application will be deployed, so make sure to click this link to play the game!
-
+![YouTube_Link](https://www.youtube.com/watch?v=QMGu90C97QI)
+![Try Live demo here](https://95f2c477.numeria.pages.dev/) 
 
 ## Scaling the project
-
 - We are planning to connect educators aswell so they can add this game in classroom and track progress of students.
-
 - This is a web app right now we are planning to make a mobile and desktop app.
 
 
