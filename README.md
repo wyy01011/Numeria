@@ -48,7 +48,7 @@ You can get a free API key through [groq.com](url).
 
 ## ▶️ Running the Application
 The application will be deployed, so make sure to click this link to play the game!
-[YouTube_Link](https://www.youtube.com/watch?v=QMGu90C97QI)
+[YouTube_Link](https://www.youtube.com/watch?v=QMGu90C97QI).
 
 [Try Live demo here](https://95f2c477.numeria.pages.dev/) 
 
