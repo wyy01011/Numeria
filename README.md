@@ -53,7 +53,7 @@ The application will be deployed, so make sure to click this link to play the ga
 [Try Live demo here](https://95f2c477.numeria.pages.dev/) 
 
 ## Practical View
-![My Image](images/Image_1.png) 
+![My Image](images/Image_1.jpg) 
 
 ## Scaling the project
 - We are planning to connect educators aswell so they can add this game in classroom and track progress of students.
